@@ -189,7 +189,6 @@ def optimize_esm(esM: EnergySystemModel, output: str):
     time_str = datetime.now().strftime("%Y%m%d%H%M%S")
     result_file_path = None
     if 'excel' in output:
-        print('Yeah you are here')
         result_file_path = f"./tmp/result-{time_str}"
         # create folder ./tmp if it does not exist
         if not os.path.exists("./tmp"):

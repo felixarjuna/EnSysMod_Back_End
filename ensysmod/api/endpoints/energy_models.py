@@ -128,12 +128,12 @@ def optimize_model(model_id: int,
     # Set output format
     output = 'json'
     result_file_path = optimize_esm(esM=esM, output=output)
-    path, name = os.path.split(result_file_path)
+    if output == 'excel':
+        return FileResponse(result_file_path,
+                            media_type="application/vnd.openxmlformats-officedocumen.spreadsheetml.sheet",
+                            filename=f"{energy_model.name}.xlsx")
+    if output == 'json':
+        # Convert folder into zip
+        zip_file_path = export_data(export_folder=result_file_path)
 
-    # Convert folder into zip
-    zip_file_path = export_data(export_folder=result_file_path)
-
-    return FileResponse(zip_file_path, media_type="application/zip", filename=f'{name}.zip')
-    # FileResponse(result_file_path,
-    #                 media_type="application/vnd.openxmlformats-officedocument. spreadsheetml.sheet",
-    #                 filename=f"{energy_model.name}.xlsx")
+        return FileResponse(zip_file_path, media_type="application/zip", filename=f'{energy_model.name}.zip')
