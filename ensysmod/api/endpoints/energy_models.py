@@ -110,6 +110,7 @@ def validate_model(model_id: int,
 
 @router.get("/{model_id}/optimize")
 def optimize_model(model_id: int,
+                   output: str,
                    db: Session = Depends(deps.get_db),
                    current: model.User = Depends(deps.get_current_user)):
     """
@@ -125,9 +126,8 @@ def optimize_model(model_id: int,
     permissions.check_usage_permission(db, user=current, dataset_id=energy_model.ref_dataset)
 
     esM = generate_esm_from_model(db=db, model=energy_model)
-    # Set output format
-    output = 'json'
     result_file_path = optimize_esm(esM=esM, output=output)
+
     if output == 'excel':
         return FileResponse(result_file_path,
                             media_type="application/vnd.openxmlformats-officedocumen.spreadsheetml.sheet",

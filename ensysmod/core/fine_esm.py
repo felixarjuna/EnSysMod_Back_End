@@ -203,8 +203,6 @@ def optimize_esm(esM: EnergySystemModel, output: str):
                                    output=output)
     if output == 'excel':
         return result_file_path + ".xlsx"
-    if output == 'csv':
-        return result_file_path + ".csv"
     if output == 'json':
         return result_file_path
 
