@@ -38,24 +38,3 @@ async def exception_handler(request: Request, exc: Exception):
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         content={"detail": str(exc)},
     )
-
-
-# Graphical User Interface
-@app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-
-@app.post("/webapp", response_class=HTMLResponse)
-async def webapp(request: Request):
-    return templates.TemplateResponse("webapp.html", {"request": request})
-
-
-@app.get("/signup", response_class=HTMLResponse)
-def signup(request: Request):
-    return templates.TemplateResponse("signup.html", {"request": request})
-
-
-@app.post("/signup", response_class=HTMLResponse)
-def signup(request: Request):
-    return templates.TemplateResponse("signup.html", {"request": request})
