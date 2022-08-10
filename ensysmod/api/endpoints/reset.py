@@ -1,8 +1,9 @@
-from typing import List, Dict
+from typing import Dict
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from sqlalchemy.orm import Session
+import os
+
 import sqlite3
 
 from ensysmod.database import init_db
@@ -15,7 +16,7 @@ def reset_database() -> Dict[str, str]:
     """
         Hard reset all of the contained data in the database
     """
-    DB_PATH = r"/Users/felixarjuna/sciebo/HiWi Felix/Arbeit/EnSysMod/ensysmod/local.db"
+    DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "local.db")
     conn = create_connection_locally(DB_PATH)
     with conn:
         tables = print_all_tables(conn)
