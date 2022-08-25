@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath app ensysmod:app
+web: gunicorn -k uvicorn.workers.UvicornWorker --pythonpath ensysmod app:app
