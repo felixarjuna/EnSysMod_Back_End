@@ -10,11 +10,9 @@ from ensysmod.database import init_db
 
 # Create FastAPI app and add all endpoints
 app = FastAPI(title=settings.SERVER_NAME)
-
-origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
