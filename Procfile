@@ -1,1 +1,1 @@
-web: gunicorn -w 4 -k uvicorn.workers.UvicornWorker --pythonpath ensysmod app:app
+web: gunicorn -k uvicorn.workers.UvicornWorker --pythonpath ensysmod app:app --preload
