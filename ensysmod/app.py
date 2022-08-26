@@ -11,7 +11,7 @@ from ensysmod.database import init_db
 # Create FastAPI app and add all endpoints
 app = FastAPI(title=settings.SERVER_NAME)
 
-origins = ["https://ensysmod.web.app/"]
+origins = ["*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
